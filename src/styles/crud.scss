@@ -1,0 +1,94 @@
+//RESPONSIVE
+// Estilo para el título encabezado
+.form-crud {
+    .form-title {
+        background-color: $color-primary;
+        color: #fff;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    // Estilos del formulario
+    form {
+        .form-group {
+            margin-bottom: 1rem;
+
+            label {
+                display: block;
+                font-weight: bold;
+            }
+
+            input[type="text"],
+            input[type="date"] {
+                width: 100%;
+                padding: 0.5rem;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                font-size: 1rem;
+            }
+
+            input[type="checkbox"] {
+                margin: 0;
+                transform: scale(1.2);
+
+                &:checked {
+                    background-color: $color-primary;
+                    border-color: $color-primary;
+                }
+            }
+        }
+
+        button,
+        a.btn-secondary {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+
+            &.btn-secondary {
+                color: $color-primary;
+                background-color: $color-secondary;
+                border-color: $color-secondary;
+
+                &:hover {
+                    background-color: $color-secondary-hover;
+                    border-color: $color-secondary-hover;
+                    color: $color-primary;
+                }
+            }
+
+            &.btn-primary {
+                background-color: $color-primary;
+                border-color: $color-primary;
+
+                &:hover {
+                    background-color: $color-tertiary;
+                    border-color: $color-tertiary;
+                }
+            }
+        }
+    }
+
+    // Estilos responsive
+    @media (max-width: 768px) {
+        form {
+            .form-group {
+
+                input[type="text"],
+                input[type="date"] {
+                    width: 100%;
+                }
+            }
+        }
+
+        .table {
+
+            thead th:first-child,
+            tbody td:first-child {
+                width: 100%;
+            }
+        }
+    }
+}

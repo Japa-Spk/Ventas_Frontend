@@ -1,0 +1,22 @@
+<body *ngIf="globalS.initData">
+  <app-header></app-header>
+  <div class="row">
+    <div class="col-1" [ngClass]="{'sidebar-hidden': !layoutS.sidebarActive}">
+      <!-- Sidebar content -->
+      <app-sidebar></app-sidebar>
+    </div>
+    <!-- <div class="container"> -->
+    <div class="col-11 container" [ngClass]="layoutS.sidebarActive ? 'main-content' : 'main-content-size'">
+      <!-- Main content here -->
+      <router-outlet></router-outlet>
+    </div>
+    <!-- </div> -->
+  </div>
+  <footer>
+    <!-- Footer content here -->
+    <app-footer></app-footer>
+  </footer>
+</body>
+<div *ngIf="!globalS.initData">
+  <loading-spinner></loading-spinner>
+</div>

@@ -1,0 +1,77 @@
+@import 'src/styles/variables.scss';
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: $color-quaternary;
+    color: #fff;
+    padding: 0 20px;
+    // padding-left: 270px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+
+    &.header-padding {
+        padding-left: 250px; // Ajusta el valor de padding según sea necesario
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        span {
+            font-size: 1.2rem;
+        }
+    }
+
+    .search {
+        display: flex;
+        align-items: center;
+        margin: 0 20px;
+
+        input[type="text"] {
+            height: 30px;
+            border: none;
+            background-color: $color-tertiary;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px 0 0 20px;
+            margin-right: -5px;
+        }
+        ::placeholder{
+            color: rgb(181, 181, 181);
+        }
+
+        button {
+            height: 30px;
+            border: none;
+            background-color: $color-quaternary;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 0 20px 20px 0;
+        }
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+
+        button {
+            height: 30px;
+            width: 30px;
+            border: none;
+            background-color: transparent;
+            color: #fff;
+            margin: 0 5px;
+            font-size: 1.5rem;
+        }
+    }
+}

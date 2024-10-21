@@ -1,0 +1,22 @@
+@import 'src/styles/variables.scss';
+//Nodemodules
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'ngx-toastr/toastr';
+//Personalizados
+@import 'src/styles/variables.scss';
+@import 'src/styles/tablas.scss';
+@import 'src/styles/crud.scss';
+
+
+.whatsapp {
+  background-color: $color-secondary;
+
+  button {
+    background-color: $color-primary;
+    color: white;
+
+    &:hover {
+      background-color: $color-tertiary;
+    }
+  }
+}

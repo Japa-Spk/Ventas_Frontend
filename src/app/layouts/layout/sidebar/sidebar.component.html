@@ -1,0 +1,32 @@
+<div class="sidebar" [ngClass]="{'sidebar-hidden': !layoutS.sidebarActive}">
+    <div class="sidebar-header">
+        <!-- <img src="logochat.png" alt="logo"> -->
+        <span>VENTASAPP</span>
+    </div>
+    <div class="sidebar-menu">
+        <ul>
+            <li>
+
+                <a [routerLink]="[ '/home']" [ngClass]="{'active': layoutS.routeactual.breadcrumb=='Home'}">
+                    <span class="fa fa-home"></span>
+                    <span>Inicio</span>
+                </a>
+            </li>
+            <li class="has-submenu">
+                <a (click)="toggleSubMenu('configuracion')">
+                    <span class="fa fa-cog"></span>
+                    <span>Configuracion</span>
+                </a>
+                <ul class="submenu" *ngIf="subMenuActive === 'configuracion'" [@fadeInOut]="subMenuActive">
+                    <li>
+                        <a [routerLink]="[ '/usuarios']"
+                            [ngClass]="{'active': layoutS.routeactual.breadcrumb=='Usuarios'}">
+                            <span class="fa fa-user"></span>
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

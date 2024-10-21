@@ -1,0 +1,83 @@
+<div id="form" class="form-crud" *ngIf="active">
+    <h2 class="form-title">Crear Usuario</h2>
+    <form novalidate [formGroup]="editForm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="cedula">Cedula de Usuario</label>
+                        <input type="text" class="form-control" id="cedula" formControlName="cedula"
+                            placeholder="Ingrese la cedula de usuario">
+                        <div class="text-info" *ngIf="!isNew">
+                            <div>
+                                La cedula no se puede modificar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="nombre">Nombre de Usuario</label>
+                        <input type="text" class="form-control" id="name" formControlName="name"
+                            placeholder="Ingrese el nombre de usuario">
+                    </div>
+                </div>
+                <div class="col-md-4" *ngIf="isNew">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" formControlName="password"
+                            placeholder="Ingrese password del usuario">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" formControlName="email"
+                            placeholder="Ingrese email de usuario">
+                        <div class="text-info" *ngIf="!isNew">
+                            <div>
+                                El email no se puede modificar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="phone">Numero de Telefono</label>
+                        <input type="text" class="form-control" id="phone" formControlName="phone"
+                            placeholder="Ingrese numero de telefono de contacto">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="address">Direccion</label>
+                        <input type="text" class="form-control" id="address" formControlName="address"
+                            placeholder="Ingrese nombre empresa de contacto">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="is_admin">Es Administrador</label>
+                        <input type="checkbox" id="is_admin" formControlName="is_admin" placeholder="Es Administrador">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="is_active">Activo</label>
+                        <input type="checkbox" id="is_active" formControlName="is_active" placeholder="Esta activo">
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 pt-5">
+                <button [disabled]="!editForm.valid" (click)="onSave($event)" class="btn btn-primary me-5">{{
+                    isNew?"Crear
+                    Vendedor":"Actualizar Vendedor" }}</button>
+                <a class="btn btn-secondary" (click)="onCancel($event)">Volver a la Tabla</a>
+            </div>
+        </div>
+    </form>
+</div>

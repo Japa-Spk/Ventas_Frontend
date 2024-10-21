@@ -1,0 +1,139 @@
+//RESPONSIVE
+.crud-table {
+  border-collapse: collapse;
+  width: 100%;
+
+  .table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f2f2f2;
+
+    h2 {
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .add-button {
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      border: none;
+      background-color: $color-primary;
+      color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-tertiary;
+      }
+    }
+  }
+
+  table {
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+
+    th,
+    td {
+      text-align: left;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .edit-button,
+    .delete-button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #ddd;
+      color: #555;
+      cursor: pointer;
+      margin-right: 1rem;
+
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+
+  .page-item {
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.active {
+      background-color: $color-primary;
+      border-color: $color-primary;
+
+      a {
+        color: $color-tertiary;
+      }
+    }
+
+    a {
+      display: block;
+      padding: 0.375rem 0.75rem;
+      text-decoration: none;
+      color: $color-primary;
+      background-color: #fff;
+      border: 1px solid $color-primary;
+      border-radius: 0.25rem;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #E1F7E7;
+      }
+    }
+  }
+}
+
+// Estilos responsive
+@media (max-width: 768px) {
+  .crud-table {
+    .table-header {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+
+      h2 {
+        margin-bottom: 0.5rem;
+      }
+
+    }
+
+    table {
+      font-size: .9rem;
+
+      th,
+      td {
+        padding: 0.8rem 1rem;
+      }
+    }
+  }
+}
+
+.opciones {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    margin-right: 10px;
+  }
+}

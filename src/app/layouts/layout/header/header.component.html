@@ -1,0 +1,14 @@
+<header  [ngClass]="{'header-padding': layoutS.sidebarActive}">
+    <div class="logo">
+        <button class="btn fa fa-bars" style="color: white;" (click)="layoutS.sidebarActive=!layoutS.sidebarActive"></button>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Buscar . . . " (change)="buscar($event)">
+        <button class="fa fa-search"></button>
+    </div>
+    <div class="actions">
+        <button class="fa fa-comment"></button>
+        <button class="fa fa-bell"></button>
+        <button class="fa fa-user"></button>
+    </div>
+</header>
