@@ -1,0 +1,57 @@
+<div id="form" class="form-crud" *ngIf="active">
+    <h2 class="form-title">Crear Producto</h2>
+    <form novalidate [formGroup]="editForm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="code">Codigo de producto</label>
+                        <input type="text" class="form-control" id="code" formControlName="code"
+                            placeholder="Ingrese el codigo del producto">
+                        <div class="text-info" *ngIf="!isNew">
+                            <div>
+                                El codigo de producto no se puede modificar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Nombre de producto</label>
+                        <input type="text" class="form-control" id="name" formControlName="name"
+                            placeholder="Ingrese el nombre del producto">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="sale_value">Precio de venta</label>
+                        <input type="number" class="form-control" id="sale_value" formControlName="sale_value"
+                            placeholder="Ingreseel precio de vebta">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="manages_iva">Maneja Iva</label>
+                        <input type="checkbox" id="manages_iva" formControlName="manages_iva"
+                            placeholder="Maneja Iva">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="iva_percentage">Porcentaje de Iva</label>
+                        <input type="number" class="form-control" id="iva_percentage" formControlName="iva_percentage"
+                            placeholder="Porcentaje de Iva">
+                    </div>
+                </div>
+            </div>
+            <div class="mt-5 pt-5">
+                <button [disabled]="!editForm.valid" (click)="onSave($event)" class="btn btn-primary me-5">{{
+                    isNew?"Crear
+                    Vendedor":"Actualizar Vendedor" }}</button>
+                <a class="btn btn-secondary" (click)="onCancel($event)">Volver a la Tabla</a>
+            </div>
+        </div>
+    </form>
+</div>
