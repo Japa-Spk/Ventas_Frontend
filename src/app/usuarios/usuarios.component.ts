@@ -39,15 +39,7 @@ export class UsuariosComponent {
   }
 
   ngOnInit(): void {
-    this.userS.getUsers().then(res => {
-      var datos = res;
-      if (datos) {
-        this.data = datos;
-        this.vista = datos;
-        this.totalItems = datos.length
-        this.showLoading = false;
-      }
-    });
+    this.initData();
     //Habilita Busqueda Global
     this.busquedaS.busqueda$.subscribe(busqueda => {
       console.log('Buscando ->', busqueda);
@@ -65,6 +57,17 @@ export class UsuariosComponent {
     this.openModal = false;
   }
 
+  initData() {
+    this.userS.getUsers().then(res => {
+      var datos = res;
+      if (datos) {
+        this.data = datos;
+        this.vista = datos;
+        this.totalItems = datos.length
+        this.showLoading = false;
+      }
+    });
+  }
 
   public async addHandler() {
     this.isNew = true;
@@ -95,6 +98,8 @@ export class UsuariosComponent {
       this.userS.setUsers(usuario).then(res => {
         this.alertS.alertaOk('Adicion', 'Se adiciono usuario')
         this.showLoading = false;
+        this.initData();
+        this.openModal = false;
       }).catch((err: any) => {
         this.alertS.alertaError('Adicion', 'Error al adicionar ->' + JSON.stringify(err.error.detail))
         this.showLoading = false;
@@ -108,6 +113,8 @@ export class UsuariosComponent {
         this.userS.putUsers(usuario).then(res => {
           this.alertS.alertaOk('Actualizar', 'Se actualizo usuario')
           this.showLoading = false;
+          this.initData();
+          this.openModal = false;
         }).catch((err: any) => {
           this.alertS.alertaError('Actualizar', 'Error al actualizar ->' + JSON.stringify(err.error.detail))
           this.showLoading = false;
@@ -115,15 +122,20 @@ export class UsuariosComponent {
         console.log('editado', usuario);
       }
     }
-    this.openModal = false;
     this.editDataItem = undefined;
   }
 
   public async removeHandler(dataItem: any) {
     console.log(dataItem);
-    var eliminar_usuario = await this.userS.deleteUsers(dataItem);
-    console.log('eliminar usuario -> ', eliminar_usuario);
     //Eliminar
+    this.showLoading = true;
+    this.alertS.alertaOk('Eliminar', 'Desea eliminar usuario').then(async (x) => {
+      if (x.isConfirmed) {
+        var eliminar_usuario = await this.userS.deleteUsers(dataItem);
+        console.log('eliminar usuario -> ', eliminar_usuario);
+        this.initData();
+      }
+    });
   }
 
 

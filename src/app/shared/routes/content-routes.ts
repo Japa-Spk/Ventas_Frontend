@@ -23,5 +23,12 @@ export const content: Routes = [
         (m) => m.UsuariosModule
       )
   },
+  {
+    path: 'productos',
+    loadChildren: () =>
+      import('../../productos/productos.module').then(
+        (m) => m.ProductosModule
+      )
+  },
 
 ];

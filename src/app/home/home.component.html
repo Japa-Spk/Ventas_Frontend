@@ -1,4 +1,16 @@
-<div class="container">
-<h1>Home</h1>
-
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let producto of vista">
+            <div class="card h-100">
+                <img src="https://via.placeholder.com/300" class="card-img-top" alt="Producto 1">
+                <div class="card-body">
+                    <h3 class="card-title">{{ producto.name }}</h3>
+                    <p class="card-text fw-bold">{{ producto.sale_value }}</p>
+                    <button class="btn btn-primary w-100" (click)="addCart(producto)">
+                        <i class="fa fa-shopping-cart"></i> Añadir al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

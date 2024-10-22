@@ -31,7 +31,7 @@
                 <td>{{producto.code}}</td>
                 <td>{{producto.name}}</td>
                 <td>{{producto.sale_value}}</td>
-                <td>{{producto.manages_iva}}</td>
+                <td>{{producto.manages_iva?"Si":"No"}}</td>
                 <td>{{producto.iva_percentage}}</td>
                 <td>
                     <button class="edit-button fa fa-edit" (click)="editHandler(producto)"></button>

@@ -39,15 +39,7 @@ export class ProductosComponent {
   }
 
   ngOnInit(): void {
-    this.productS.getProducts().then(res => {
-      var datos = res;
-      if (datos) {
-        this.data = datos;
-        this.vista = datos;
-        this.totalItems = datos.length
-        this.showLoading = false;
-      }
-    });
+    this.initData();
     //Habilita Busqueda Global
     this.busquedaS.busqueda$.subscribe(busqueda => {
       console.log('Buscando ->', busqueda);
@@ -65,6 +57,18 @@ export class ProductosComponent {
     this.openModal = false;
   }
 
+
+  initData() {
+    this.productS.getProducts().then(res => {
+      var datos = res;
+      if (datos) {
+        this.data = datos;
+        this.vista = datos;
+        this.totalItems = datos.length
+        this.showLoading = false;
+      }
+    });
+  }
 
   public async addHandler() {
     this.isNew = true;
@@ -92,11 +96,17 @@ export class ProductosComponent {
     if (this.isNew) {
       this.showLoading = true
       //Guardar
-      this.productS.setProducts(producto).then(res => {
+      this.productS.setProduct(producto).then(res => {
         this.alertS.alertaOk('Adicion', 'Se adiciono producto')
         this.showLoading = false;
+        this.initData();
+        this.openModal = false;
       }).catch((err: any) => {
-        this.alertS.alertaError('Adicion', 'Error al adicionar ->' + JSON.stringify(err.error.detail))
+        if (err.error.detail[0].type == "value_error") {
+          this.alertS.alertaError('Adicion', 'Error al adicionar ->' + JSON.stringify(err.error.detail[0].msg))
+        } else {
+          this.alertS.alertaError('Adicion', 'Error al adicionar ->' + JSON.stringify(err.error.detail[0]))
+        }
         this.showLoading = false;
       });
     } else {
@@ -105,9 +115,10 @@ export class ProductosComponent {
         console.log('edit data', this.editDataItem)
         console.log('datos producto', producto)
         //Actualizar
-        this.productS.putProducts(producto).then(res => {
+        this.productS.putProduct(producto).then(res => {
           this.alertS.alertaOk('Actualizar', 'Se actualizo producto')
           this.showLoading = false;
+          this.openModal = false;
         }).catch((err: any) => {
           this.alertS.alertaError('Actualizar', 'Error al actualizar ->' + JSON.stringify(err.error.detail))
           this.showLoading = false;
@@ -115,15 +126,21 @@ export class ProductosComponent {
         console.log('editado', producto);
       }
     }
-    this.openModal = false;
     this.editDataItem = undefined;
   }
 
   public async removeHandler(dataItem: any) {
     console.log(dataItem);
-    var eliminar_producto = await this.productS.deleteProducts(dataItem);
-    console.log('eliminar producto -> ', eliminar_producto);
     //Eliminar
+    this.showLoading = true;
+    this.alertS.alertaOk('Eliminar', 'Desea eliminar producto').then(async (x) => {
+      if (x.isConfirmed) {
+        var eliminar_producto = await this.productS.deleteProduct(dataItem);
+        console.log('eliminar producto -> ', eliminar_producto);
+        this.initData();
+      }
+    });
+
   }
 
 

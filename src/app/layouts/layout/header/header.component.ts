@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LayoutService } from '../../layout.service';
 import { GlobalService } from '../../../shared/services/global.service'
 import { BusquedaService } from '../../../shared/services/busqueda.service';
+import { SaleService } from '@app/shared/services/sale.service';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public layoutS: LayoutService,
     public globalS: GlobalService,
+    public saleS: SaleService,
     public busquedaS: BusquedaService
   ) { }
 

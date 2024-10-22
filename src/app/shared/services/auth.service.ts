@@ -61,6 +61,7 @@ export class AuthService implements OnInit {
         localStorage.removeItem('user');
       }
     } catch (error: any) {
+      console.log(error);
       alert(error.error.detail);
       throw error;
     }

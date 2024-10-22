@@ -9,7 +9,7 @@
 
                 <a [routerLink]="[ '/home']" [ngClass]="{'active': layoutS.routeactual.breadcrumb=='Home'}">
                     <span class="fa fa-home"></span>
-                    <span>Inicio</span>
+                    <span>Tienda</span>
                 </a>
             </li>
             <li class="has-submenu">
@@ -23,6 +23,13 @@
                             [ngClass]="{'active': layoutS.routeactual.breadcrumb=='Usuarios'}">
                             <span class="fa fa-user"></span>
                             <span>Usuarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="[ '/productos']"
+                            [ngClass]="{'active': layoutS.routeactual.breadcrumb=='Productos'}">
+                            <span class="fa fa-box"></span>
+                            <span>Productos</span>
                         </a>
                     </li>
                 </ul>

@@ -7,7 +7,7 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log('Entro a interceptor');
         const user:any = JSON.parse(localStorage.getItem('user') || 'null');
-        const token = user.jwtToken;
+        const token = user?.jwtToken;
         console.log(user, token);
 
         if (token) {
