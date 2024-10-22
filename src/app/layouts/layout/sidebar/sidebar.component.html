@@ -18,12 +18,13 @@
                 </a>
             </li>
             <li>
-                <a [routerLink]="[ '/compras']" [ngClass]="{'active': layoutS.routeactual.breadcrumb=='compras'}">
+                <a [routerLink]="[ '/ventas/mis-compras']"
+                    [ngClass]="{'active': layoutS.routeactual.breadcrumb=='compras'}">
                     <span class="fa fa-file-invoice-dollar"></span>
                     <span>Mis Compras</span>
                 </a>
             </li>
-            <li class="has-submenu">
+            <li class="has-submenu" *ngIf="globalS.user.is_admin">
                 <a (click)="toggleSubMenu('configuracion')">
                     <span class="fa fa-cog"></span>
                     <span>Configuracion</span>
@@ -41,6 +42,13 @@
                             [ngClass]="{'active': layoutS.routeactual.breadcrumb=='Productos'}">
                             <span class="fa fa-box"></span>
                             <span>Productos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="[ '/ventas/ventasgen']"
+                            [ngClass]="{'active': layoutS.routeactual.breadcrumb=='ventasgen'}">
+                            <span class="fa fa-file-invoice-dollar"></span>
+                            <span>Ventas</span>
                         </a>
                     </li>
                 </ul>

@@ -1,6 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { LayoutService } from '../../layout.service';
+import { GlobalService } from '../../../shared/services/global.service';
 //Animation
 import { fadeInOutAnimation } from './sidebar.animations';
 //Modelo
@@ -18,7 +19,11 @@ export class SidebarComponent {
   //Menu Variables
   public subMenuActive: any = null;
 
-  constructor(private router: Router, public layoutS: LayoutService) {
+  constructor(
+    private router: Router, 
+    public globalS: GlobalService,
+    public layoutS: LayoutService
+    ) {
 
   }
 

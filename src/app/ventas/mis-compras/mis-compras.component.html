@@ -1,0 +1,53 @@
+<div class="crud-table">
+    <div class="table-header">
+        <h2>{{ titulo }}</h2>
+        <div class="opciones">
+            <span class="input-group-text" id="basic-addon1">Filtrar Compras</span>
+            <input type="date" class="form-control" placeholder="filter" aria-label="filter" aria-describedby="filter" [(ngModel)]="dateFilter">
+            <button class="add-button" (click)="filterDate()">Filtrar</button>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Consecutivo</th>
+                <th>Usuario</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let venta of vista; let i = index">
+                <tr>
+                    <td>{{venta.consecutive}}</td>
+                    <td>{{venta.user_id}}</td>
+                    <td>{{venta.date | date: 'medium' }}</td>
+                    <td>{{venta.total_sale | currency:'COP' }}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" type="button"
+                            (click)="toggleDetail(i); $event.stopPropagation()">
+                            {{ isExpanded(i) ? 'Ocultar Detalle' : 'Ver Detalle' }}
+                        </button>
+                    </td>
+                </tr>
+                <!-- Fila de Detalle -->
+                <td colspan="5" *ngIf="isExpanded(i)">
+                    <table class="table mb-0">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Iva Calculado</th>
+                            <th>Total</th>
+                        </tr>
+
+                        <tr *ngFor="let detail of venta.details">
+                            <td>{{detail.product_id}}</td>
+                            <td>{{detail.calculated_iva}}</td>
+                            <td>{{detail.sale_value}}</td>
+                        </tr>
+                    </table>
+                </td>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

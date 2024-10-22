@@ -34,8 +34,8 @@ export class SaleService {
   }
 
   //Traer todos los registros de ventas del usuario
-  async getSalesMe(userId: String): Promise<any> {
-    var url_point = 'sales/' + userId;
+  async getSalesMe(): Promise<any> {
+    var url_point = 'sales/me';
     try {
       const consulta$ = this.http.get(this.url_api + url_point);
       const resultado = await firstValueFrom(consulta$);
