@@ -175,9 +175,9 @@ export class UsuariosComponent {
     return Promise.resolve(
       this.data.filter(
         (item: any) =>
-          item.cod_vended.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
+          item.cedula.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
           item.name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
-          item.num_phone.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
+          item.phone.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
           item.email.toLowerCase().indexOf(searchKey.toLowerCase()) > -1
       )
     );

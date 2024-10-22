@@ -30,5 +30,11 @@ export const content: Routes = [
         (m) => m.ProductosModule
       )
   },
-
+  {
+    path: 'ventas',
+    loadChildren: () =>
+      import('../../ventas/ventas.module').then(
+        (m) => m.VentasModule
+      )
+  },
 ];

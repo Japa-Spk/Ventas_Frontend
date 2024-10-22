@@ -6,10 +6,21 @@
     <div class="sidebar-menu">
         <ul>
             <li>
-
                 <a [routerLink]="[ '/home']" [ngClass]="{'active': layoutS.routeactual.breadcrumb=='Home'}">
                     <span class="fa fa-home"></span>
                     <span>Tienda</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="[ '/ventas']" [ngClass]="{'active': layoutS.routeactual.breadcrumb=='Ventas'}">
+                    <span class="fa fa-shopping-cart"></span>
+                    <span>Carrito de compras</span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="[ '/compras']" [ngClass]="{'active': layoutS.routeactual.breadcrumb=='compras'}">
+                    <span class="fa fa-file-invoice-dollar"></span>
+                    <span>Mis Compras</span>
                 </a>
             </li>
             <li class="has-submenu">

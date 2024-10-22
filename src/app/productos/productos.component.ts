@@ -180,10 +180,8 @@ export class ProductosComponent {
     return Promise.resolve(
       this.data.filter(
         (item: any) =>
-          item.cod_vended.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
-          item.name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
-          item.num_phone.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
-          item.email.toLowerCase().indexOf(searchKey.toLowerCase()) > -1
+          item.code.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
+          item.name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 
       )
     );
   }
