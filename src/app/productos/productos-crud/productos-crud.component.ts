@@ -39,6 +39,7 @@ export class ProductosCrudComponent implements OnInit {
   constructor(private formBuilder: FormBuilder
   ) {
     this.editForm = this.formBuilder.group({
+      id: [0],
       code: ['', Validators.required],
       name: ['', Validators.required],
       sale_value: [0, Validators.required],
@@ -54,7 +55,7 @@ export class ProductosCrudComponent implements OnInit {
   public onSave(e: any): void {
     e.preventDefault();
     console.log('onsave', e, this.editForm.value);
-    this.save.emit(this.editForm.value);
+    this.save.emit(this.editForm.getRawValue());
     // this.active = false;
   }
 

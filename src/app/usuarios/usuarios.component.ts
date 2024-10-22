@@ -96,12 +96,17 @@ export class UsuariosComponent {
       this.showLoading = true
       //Guardar
       this.userS.setUsers(usuario).then(res => {
-        this.alertS.alertaOk('Adicion', 'Se adiciono usuario')
+        this.toster.success('Usuario Adicionado', 'Adicion');
         this.showLoading = false;
         this.initData();
         this.openModal = false;
       }).catch((err: any) => {
-        this.alertS.alertaError('Adicion', 'Error al adicionar ->' + JSON.stringify(err.error.detail))
+        console.log('error', err);
+        if (err.error.detail[0].type == "value_error") {
+          this.toster.error(JSON.stringify(err.error.detail[0].msg), 'Error al adicionar')
+        } else {
+          this.toster.error(JSON.stringify(err.error.detail[0]), 'Error al adicionar')
+        }
         this.showLoading = false;
       });
     } else {
@@ -109,14 +114,16 @@ export class UsuariosComponent {
         this.showLoading = true
         console.log('edit data', this.editDataItem)
         console.log('datos usuario', usuario)
+        delete usuario.password;
         //Actualizar
         this.userS.putUsers(usuario).then(res => {
-          this.alertS.alertaOk('Actualizar', 'Se actualizo usuario')
+          this.toster.success('Usuario Actualizado', 'Actualizacion');
           this.showLoading = false;
           this.initData();
           this.openModal = false;
         }).catch((err: any) => {
-          this.alertS.alertaError('Actualizar', 'Error al actualizar ->' + JSON.stringify(err.error.detail))
+          console.log('error', err);
+          this.toster.error(JSON.stringify(err.error.detail), 'Error al actualizar');
           this.showLoading = false;
         });
         console.log('editado', usuario);
@@ -133,6 +140,7 @@ export class UsuariosComponent {
       if (x.isConfirmed) {
         var eliminar_usuario = await this.userS.deleteUsers(dataItem);
         console.log('eliminar usuario -> ', eliminar_usuario);
+        this.toster.error('Usuario Eliminado', 'Eliminacion');
         this.initData();
       }
     });

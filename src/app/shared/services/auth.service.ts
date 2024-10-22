@@ -62,7 +62,7 @@ export class AuthService implements OnInit {
       }
     } catch (error: any) {
       console.log(error);
-      alert(error.error.detail);
+      this.toster.error(error.error.detail);
       throw error;
     }
   }

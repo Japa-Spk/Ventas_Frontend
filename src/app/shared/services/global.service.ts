@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +16,8 @@ export class GlobalService {
 
   constructor(
     public router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    public toster: ToastrService
   ) {
     this.inicializarDatos();
   }
@@ -33,7 +35,7 @@ export class GlobalService {
         this.user = res;
         this.initData = true;
       }).catch(error=>{
-        alert(error.error.detail);
+        this.toster.error(error.error.detail);
         this.router.navigate(['/login']);
       });
         

@@ -40,6 +40,7 @@ export class UsuariosCrudComponent implements OnInit {
   constructor(private formBuilder: FormBuilder
   ) {
     this.editForm = this.formBuilder.group({
+      id: [0],
       cedula: ['', Validators.required],
       name: ['', Validators.required],
       address: ['', Validators.required],
@@ -58,8 +59,8 @@ export class UsuariosCrudComponent implements OnInit {
   public onSave(e: any): void {
     e.preventDefault();
     console.log('onsave', e, this.editForm.value);
-    this.save.emit(this.editForm.value);
-    this.active = false;
+    this.save.emit(this.editForm.getRawValue());
+    // this.active = false;
   }
 
   public onCancel(e: any): void {

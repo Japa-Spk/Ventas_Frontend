@@ -97,15 +97,15 @@ export class ProductosComponent {
       this.showLoading = true
       //Guardar
       this.productS.setProduct(producto).then(res => {
-        this.alertS.alertaOk('Adicion', 'Se adiciono producto')
+        this.toster.success('Producto adicionado', 'Adicionado')
         this.showLoading = false;
         this.initData();
         this.openModal = false;
       }).catch((err: any) => {
         if (err.error.detail[0].type == "value_error") {
-          this.alertS.alertaError('Adicion', 'Error al adicionar ->' + JSON.stringify(err.error.detail[0].msg))
+          this.toster.error(JSON.stringify(err.error.detail[0].msg), 'Error al adicionar')
         } else {
-          this.alertS.alertaError('Adicion', 'Error al adicionar ->' + JSON.stringify(err.error.detail[0]))
+          this.toster.error(JSON.stringify(err.error.detail[0]), 'Error al adicionar')
         }
         this.showLoading = false;
       });
@@ -116,11 +116,12 @@ export class ProductosComponent {
         console.log('datos producto', producto)
         //Actualizar
         this.productS.putProduct(producto).then(res => {
-          this.alertS.alertaOk('Actualizar', 'Se actualizo producto')
+          this.toster.success('Producto actualizado', 'Actualizado')
           this.showLoading = false;
+          this.initData();
           this.openModal = false;
         }).catch((err: any) => {
-          this.alertS.alertaError('Actualizar', 'Error al actualizar ->' + JSON.stringify(err.error.detail))
+          this.toster.error(JSON.stringify(err.error.detail), 'Error al actualizar')
           this.showLoading = false;
         });
         console.log('editado', producto);
@@ -137,6 +138,7 @@ export class ProductosComponent {
       if (x.isConfirmed) {
         var eliminar_producto = await this.productS.deleteProduct(dataItem);
         console.log('eliminar producto -> ', eliminar_producto);
+        this.toster.error('Producto eliminado', 'Eliminado')
         this.initData();
       }
     });
@@ -181,7 +183,7 @@ export class ProductosComponent {
       this.data.filter(
         (item: any) =>
           item.code.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 ||
-          item.name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1 
+          item.name.toLowerCase().indexOf(searchKey.toLowerCase()) > -1
       )
     );
   }
